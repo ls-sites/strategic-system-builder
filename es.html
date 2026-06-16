@@ -243,6 +243,13 @@
   @media(max-width:460px){
     .caps{grid-template-columns:1fr}
   }
+  @media(max-width:600px){
+    .slider-controls{gap:12px}
+    .arrow{width:40px;height:40px}
+    .arrow svg{width:18px;height:18px}
+    .slide-caption .name{font-size:18px}
+    .slide-caption .did{font-size:15px}
+  }
   @media(prefers-reduced-motion:reduce){
     *{scroll-behavior:auto!important}
     .reveal{opacity:1;transform:none;transition:none}
@@ -255,8 +262,8 @@
   .langswitch a.active{color:var(--light);font-weight:600}
   .langswitch a:hover{color:#fff}
   /* ---------------- portfolio slider ---------------- */
-  .slider{display:flex;align-items:center;gap:16px;margin-top:32px}
-  .slider-viewport{overflow:hidden;flex:1}
+  .slider{margin-top:32px}
+  .slider-viewport{overflow:hidden;width:100%}
   .slider-track{display:flex;transition:transform .45s ease;will-change:transform}
   .slide{min-width:100%;flex-shrink:0}
   .slide-caption{margin-top:18px;text-align:center}
@@ -266,15 +273,15 @@
   .arrow svg{width:20px;height:20px}
   .arrow:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px)}
   .arrow:focus-visible{outline:3px solid var(--light);outline-offset:2px}
-  .slider-dots{display:flex;justify-content:center;gap:9px;margin-top:22px}
+  .slider-dots{display:flex;justify-content:center;gap:9px}
+  .slider-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px}
   .dot{width:8px;height:8px;border-radius:50%;background:var(--line);border:none;padding:0;cursor:pointer;transition:background .18s ease}
   .dot.active{background:var(--light-deep)}
   .dot:hover{background:var(--light)}
 
   /* ---------------- app slide frame ---------------- */
   .appstage{aspect-ratio:16/10;border-radius:7px;border:1px solid var(--line);background:radial-gradient(ellipse 70% 60% at 78% 8%, rgba(100,63,150,0.34), rgba(100,63,150,0) 62%),radial-gradient(ellipse 80% 55% at 20% 112%, rgba(100,63,150,0.20), rgba(100,63,150,0) 60%),var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 16px 36px -22px rgba(26,28,34,0.4)}
-  .appphone{height:84%;aspect-ratio:9/19;border-radius:18px;background:#16181D;padding:6px;box-shadow:0 18px 40px -20px rgba(0,0,0,0.55)}
-  .appphone img{width:100%;height:100%;object-fit:cover;border-radius:13px;display:block}
+  .appstage img{height:86%;width:auto;max-width:88%;object-fit:contain;border:6px solid #16181D;border-radius:20px;box-shadow:0 18px 40px -20px rgba(0,0,0,0.55);display:block}
 
   /* ---------------- footer contact ---------------- */
   .foot-contact{display:flex;align-items:center;gap:11px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-soft);flex-wrap:wrap}
@@ -461,9 +468,6 @@
       <h2 class="display">Un vistazo a lo que podemos construir.</h2>
     </div>
     <div class="slider reveal">
-      <button class="arrow" id="prev" aria-label="Anterior">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
       <div class="slider-viewport">
         <div class="slider-track" id="track">
           <div class="slide">
@@ -498,7 +502,7 @@
           </div>
           <div class="slide">
             <div class="appstage">
-              <div class="appphone"><img src="images/acim.jpg" alt="First Light app" onerror="this.remove()"></div>
+              <img src="images/acim.jpg" alt="First Light app" onerror="this.remove()">
             </div>
             <div class="slide-caption">
               <p class="name">First Light</p>
@@ -507,15 +511,20 @@
           </div>
         </div>
       </div>
-      <button class="arrow" id="next" aria-label="Siguiente">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
     </div>
-    <div class="slider-dots" id="dots">
+    <div class="slider-controls">
+      <button class="arrow" id="prev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="slider-dots" id="dots">
       <button class="dot active" aria-label="Diapositiva 1"></button>
       <button class="dot" aria-label="Diapositiva 2"></button>
       <button class="dot" aria-label="Diapositiva 3"></button>
       <button class="dot" aria-label="Diapositiva 4"></button>
+    </div>
+      <button class="arrow" id="next" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
   </div>
 </section>
