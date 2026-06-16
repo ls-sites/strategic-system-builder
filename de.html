@@ -265,10 +265,10 @@
   .slider{margin-top:32px}
   .slider-viewport{overflow:hidden;width:100%}
   .slider-track{display:flex;transition:transform .45s ease;will-change:transform}
-  .slide{min-width:100%;flex-shrink:0}
+  .slide{flex:0 0 100%;min-width:0;max-width:100%;overflow:hidden}
   .slide-caption{margin-top:18px;text-align:center}
   .slide-caption .name{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:20px}
-  .slide-caption .did{color:var(--ink-soft);font-size:15.5px;margin:5px auto 0;max-width:56ch}
+  .slide-caption .did{color:var(--ink-soft);font-size:15.5px;margin:5px auto 0;max-width:56ch;padding:0 6px}
   .arrow{flex-shrink:0;width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .18s ease,color .18s ease,transform .18s ease}
   .arrow svg{width:20px;height:20px}
   .arrow:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px)}
