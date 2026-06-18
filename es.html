@@ -245,12 +245,18 @@
   @media(max-width:460px){
     .caps{grid-template-columns:1fr}
   }
+  @media(max-width:700px){
+    .arrow.side{display:none}
+    .arrow.bottom{display:flex}
+  }
   @media(max-width:600px){
     .slider-controls{gap:12px}
     .arrow{width:40px;height:40px}
     .arrow svg{width:18px;height:18px}
     .slide-caption .name{font-size:18px}
     .slide-caption .did{font-size:15px}
+    .browser-bar{height:24px;padding:0 11px;gap:6px}
+    .browser-bar span{width:7px;height:7px}
   }
   @media(prefers-reduced-motion:reduce){
     *{scroll-behavior:auto!important}
@@ -264,8 +270,8 @@
   .langswitch a.active{color:var(--light);font-weight:600}
   .langswitch a:hover{color:#fff}
   /* ---------------- portfolio slider ---------------- */
-  .slider{margin-top:32px}
-  .slider-viewport{overflow:hidden;width:100%}
+  .slider{display:flex;align-items:center;gap:14px;margin-top:32px;position:relative}
+  .slider-viewport{overflow:hidden;flex:1;min-width:0}
   .slider-track{display:flex;transition:transform .45s ease;will-change:transform}
   .slide{flex:0 0 100%;min-width:0;max-width:100%;overflow:hidden}
   .slide-caption{margin-top:18px;text-align:center}
@@ -275,6 +281,7 @@
   .arrow svg{width:20px;height:20px}
   .arrow:hover{background:var(--ink);color:var(--paper);transform:translateY(-1px)}
   .arrow:focus-visible{outline:3px solid var(--light);outline-offset:2px}
+  .arrow.bottom{display:none}
   .slider-dots{display:flex;justify-content:center;gap:9px}
   .slider-controls{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:22px}
   .dot{width:8px;height:8px;border-radius:50%;background:var(--line);border:none;padding:0;cursor:pointer;transition:background .18s ease}
@@ -471,6 +478,9 @@
       <h2 class="display">Un vistazo a lo que podemos construir.</h2>
     </div>
     <div class="slider reveal">
+      <button class="arrow side js-prev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
       <div class="slider-viewport">
         <div class="slider-track" id="track">
           <div class="slide">
@@ -490,7 +500,7 @@
             </div>
             <div class="slide-caption">
               <p class="name">Golden Chi con Lisa Lee</p>
-              <p class="did">Un sitio web sereno y enraizado con mensajes claros y una estructura de oferta para una práctica de Tai Chi y Qi Gong<br>ejecutado en 3 semanas</p>
+              <p class="did">Un sitio web sereno y enraizado con mensajes claros y una estructura de oferta<br>ejecutado en 3 semanas</p>
             </div>
           </div>
           <div class="slide">
@@ -524,9 +534,12 @@
           </div>
         </div>
       </div>
+      <button class="arrow side js-next" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
     <div class="slider-controls">
-      <button class="arrow" id="prev" aria-label="Anterior">
+      <button class="arrow bottom js-prev" aria-label="Anterior">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
       <div class="slider-dots" id="dots">
@@ -536,7 +549,7 @@
       <button class="dot" aria-label="Diapositiva 4"></button>
       <button class="dot" aria-label="Diapositiva 5"></button>
     </div>
-      <button class="arrow" id="next" aria-label="Siguiente">
+      <button class="arrow bottom js-next" aria-label="Siguiente">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
     </div>
@@ -636,8 +649,8 @@
   var dots=[].slice.call(document.querySelectorAll('#dots .dot'));
   var i=0;
   function go(n){ i=(n+slides)%slides; track.style.transform='translateX(-'+(i*100)+'%)'; dots.forEach(function(d,k){ d.classList.toggle('active',k===i); }); }
-  document.getElementById('prev').addEventListener('click',function(){go(i-1);});
-  document.getElementById('next').addEventListener('click',function(){go(i+1);});
+  [].forEach.call(document.querySelectorAll('.js-prev'),function(b){b.addEventListener('click',function(){go(i-1);});});
+  [].forEach.call(document.querySelectorAll('.js-next'),function(b){b.addEventListener('click',function(){go(i+1);});});
   dots.forEach(function(d,k){ d.addEventListener('click',function(){go(k);}); });
 })();
 </script>
